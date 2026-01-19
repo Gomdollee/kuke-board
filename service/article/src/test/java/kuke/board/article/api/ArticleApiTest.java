@@ -27,6 +27,19 @@ public class ArticleApiTest {
                 .body(ArticleResponse.class);
     }
 
+    @Test
+    void readTest() {
+       ArticleResponse response = read(271487434043047936L);
+        System.out.println("270039742402691072 = " + response);
+    }
+
+    ArticleResponse read(Long articleId) {
+        return restClient.get()
+                .uri("/v1/articles/{articleId}", articleId)
+                .retrieve()
+                .body(ArticleResponse.class);
+    }
+
     @Getter
     @AllArgsConstructor
     static class ArticleCreateRequest {
