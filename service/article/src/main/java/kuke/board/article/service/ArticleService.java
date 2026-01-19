@@ -31,6 +31,7 @@ public class ArticleService {
          return ArticleResponse.from(article);
      }
 
+
      public ArticleResponse read(Long articleId) {
          return ArticleResponse.from(articleRepository.findById(articleId).orElseThrow());
      }

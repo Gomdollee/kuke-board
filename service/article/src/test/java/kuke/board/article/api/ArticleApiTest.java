@@ -29,8 +29,8 @@ public class ArticleApiTest {
 
     @Test
     void readTest() {
-       ArticleResponse response = read(271487434043047936L);
-        System.out.println("270039742402691072 = " + response);
+       ArticleResponse response = read(271664933321289728L);
+        System.out.println("271664933321289728 = " + response);
     }
 
     ArticleResponse read(Long articleId) {
@@ -39,6 +39,25 @@ public class ArticleApiTest {
                 .retrieve()
                 .body(ArticleResponse.class);
     }
+
+
+
+    void update(Long articleId) {
+        restClient.put()
+                .uri("/v1/articles/{articleId}", articleId)
+                .body(new ArticleUpdateRequest("h2 2", "my content22"))
+                .retrieve()
+                .body(ArticleResponse.class);
+    }
+
+    @Test
+    void updateTest() {
+        update(271487434043047936L);
+        ArticleResponse response = read(271487434043047936L);
+        System.out.println("response = " + response);
+    }
+
+
 
     @Getter
     @AllArgsConstructor
@@ -50,6 +69,7 @@ public class ArticleApiTest {
     }
 
     @Getter
+    @AllArgsConstructor
     static class ArticleUpdateRequest {
         private String title;
         private String content;

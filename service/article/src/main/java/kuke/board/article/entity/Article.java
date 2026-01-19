@@ -1,6 +1,5 @@
 package kuke.board.article.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -17,30 +16,16 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Article {
-
     @Id
-    @Column(name = "article_id")
     private Long articleId;
-
-    @Column(name = "title")
     private String title;
-
-    @Column(name = "content")
     private String content;
-
-    @Column(name = "board_id")
-    private Long boardId;
-
-    @Column(name = "writer_id")
+    private Long boardId; // shard key
     private Long writerId;
-
-    @Column(name = "created_at")
     private LocalDateTime createdAt;
-
-    @Column(name = "modified_at")
     private LocalDateTime modifiedAt;
 
-    public static Article create(Long articleId, String title, String content, Long boardId,Long writerId) {
+    public static Article create(Long articleId, String title, String content, Long boardId, Long writerId) {
         Article article = new Article();
         article.articleId = articleId;
         article.title = title;
@@ -58,5 +43,5 @@ public class Article {
         modifiedAt = LocalDateTime.now();
     }
 
-
 }
+
