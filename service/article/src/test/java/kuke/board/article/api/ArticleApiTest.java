@@ -40,6 +40,12 @@ public class ArticleApiTest {
                 .body(ArticleResponse.class);
     }
 
+    @Test
+    void updateTest() {
+        update(271487434043047936L);
+        ArticleResponse response = read(271487434043047936L);
+        System.out.println("response = " + response);
+    }
 
 
     void update(Long articleId) {
@@ -51,12 +57,11 @@ public class ArticleApiTest {
     }
 
     @Test
-    void updateTest() {
-        update(271487434043047936L);
-        ArticleResponse response = read(271487434043047936L);
-        System.out.println("response = " + response);
+    void deleteTest() {
+        restClient.delete()
+                .uri("/v1/articles/{articleId}", 271487434043047936L)
+                .retrieve();
     }
-
 
 
     @Getter
